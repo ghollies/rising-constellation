@@ -47,7 +47,7 @@ config :rc, RC.Repo,
   username: "postgres",
   password: "postgres",
   database: "gateway_dev",
-  hostname: "localhost",
+  hostname: (not is_nil(System.get_env("RDBMS_HOST")) and System.get_env("RDBMS_HOST")) || "localhost",
   pool_size: 10
 
 # Watch static and templates for browser reloading.

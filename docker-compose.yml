@@ -9,3 +9,16 @@ services:
       - 5432:5432
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+  rc:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    environment:
+      RDBMS_HOST: host.docker.internal
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/data
+      
